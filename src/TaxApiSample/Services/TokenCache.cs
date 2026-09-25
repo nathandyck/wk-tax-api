@@ -9,6 +9,8 @@ namespace TaxApiSample.Services;
 /// </summary>
 public sealed class TokenCache
 {
+    private static readonly TimeSpan TokenLifetime = TimeSpan.FromMinutes(15);
+
     private static readonly string FilePath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "TaxApiSample",
@@ -30,6 +32,25 @@ public sealed class TokenCache
 
         var stored = JsonSerializer.Deserialize<StoredToken>(File.ReadAllText(FilePath));
         return stored?.Token;
+    }
+
+    public bool TryGetExpirationUtc(out DateTimeOffset expirationUtc)
+    {
+        if (!File.Exists(FilePath))
+        {
+            expirationUtc = default;
+            return false;
+        }
+
+        var stored = JsonSerializer.Deserialize<StoredToken>(File.ReadAllText(FilePath));
+        if (stored is null)
+        {
+            expirationUtc = default;
+            return false;
+        }
+
+        expirationUtc = stored.SavedAtUtc.Add(TokenLifetime);
+        return true;
     }
 
     public void Clear()

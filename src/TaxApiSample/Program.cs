@@ -1,5 +1,6 @@
 using DotNetEnv;
 using Microsoft.Extensions.Configuration;
+using Spectre.Console;
 using TaxApiSample.Configuration;
 using TaxApiSample.Services;
 
@@ -32,8 +33,7 @@ public static class Program
 
         if (args.Length == 0)
         {
-            PrintUsage();
-            return 1;
+            return await RunInteractiveAsync(options);
         }
 
         var command = args[0];
@@ -46,6 +46,7 @@ public static class Program
                 "help" or "-h" or "--help" => PrintUsage(),
                 "list" or "endpoints" => ListEndpoints(),
                 "login" => await LoginAsync(options),
+                "check-token" => await CheckTokenAsync(options),
                 "logout" => Logout(),
                 _ => await InvokeEndpointAsync(options, command, rest),
             };
@@ -62,8 +63,12 @@ public static class Program
         Console.WriteLine("""
             TaxApiSample - CLI client for the CCH Axcess Tax Services v2 API
 
-            Usage:
+            To launch the interactive menu:
+              TaxApiSample
+
+            Other Usages:
               TaxApiSample login
+              TaxApiSample check-token
               TaxApiSample logout
               TaxApiSample list
               TaxApiSample <endpoint-name> [--method GET|POST|PUT|DELETE]
@@ -77,9 +82,55 @@ public static class Program
               TaxApiSample Returns --query "$filter=TaxYear eq '2023'"
               TaxApiSample CalculateReturn --body @calculate-request.json
 
+            Starting without arguments checks the cached token, logs in if it is expired,
+            and opens the interactive action menu.
             Run "TaxApiSample list" to see every available endpoint and its HTTP methods.
             """);
         return 0;
+    }
+
+    private static async Task<int> RunInteractiveAsync(CchApiOptions options)
+    {
+        AnsiConsole.Write(new FigletText("TaxApiSample").Color(Color.Green));
+        AnsiConsole.MarkupLine("[grey]CCH Axcess Tax Services[/]");
+
+        var tokenCheckResult = await CheckTokenAsync(options, interactive: true);
+        if (tokenCheckResult != 0)
+        {
+            return tokenCheckResult;
+        }
+
+        var actions = new[]
+        {
+            "Placeholder action 1",
+            "Placeholder action 2",
+            "Placeholder action 3",
+            "Check auth token",
+            "Exit"
+        };
+
+        while (true)
+        {
+            var action = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[green]Choose an action[/]")
+                    .PageSize(actions.Length)
+                    .HighlightStyle(new Style(Color.Green))
+                    .AddChoices(actions));
+
+            if (action == "Exit")
+            {
+                return 0;
+            }
+
+            if (action == "Check auth token")
+            {
+                await CheckTokenAsync(options, interactive: true);
+                continue;
+            }
+
+            AnsiConsole.MarkupLine($"[yellow]{Markup.Escape(action)} is not implemented yet.[/]");
+        }
     }
 
     private static int ListEndpoints()
@@ -101,7 +152,7 @@ public static class Program
         return 0;
     }
 
-    private static async Task<int> LoginAsync(CchApiOptions options)
+    private static async Task<int> LoginAsync(CchApiOptions options, bool interactive = false)
     {
         var integratorKey = Environment.GetEnvironmentVariable("INTEGRATOR_KEY") ?? string.Empty;
         var userName = Environment.GetEnvironmentVariable("CCH_USERNAME");
@@ -111,16 +162,37 @@ public static class Program
 
         if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
         {
-            Console.Error.WriteLine("CCH_USERNAME and CCH_PASSWORD must be set (see .env.example).");
+            if (interactive)
+            {
+                AnsiConsole.MarkupLine("[red]CCH_USERNAME and CCH_PASSWORD must be set.[/] Check your .env file.");
+            }
+            else
+            {
+                Console.Error.WriteLine("CCH_USERNAME and CCH_PASSWORD must be set (see .env.example).");
+            }
+
             return 1;
         }
 
         using var httpClient = new HttpClient();
         var authClient = new AuthClient(httpClient, options);
-        var token = await authClient.AuthenticateAsync(integratorKey, userName, password, userSid, realm, CancellationToken.None);
+        var token = interactive
+            ? await AnsiConsole.Status()
+                .StartAsync("Authenticating...", _ => authClient.AuthenticateAsync(
+                    integratorKey, userName, password, userSid, realm, CancellationToken.None))
+            : await authClient.AuthenticateAsync(
+                integratorKey, userName, password, userSid, realm, CancellationToken.None);
 
         new TokenCache().Save(token);
-        Console.WriteLine("Login succeeded. Session token cached for subsequent commands.");
+        if (interactive)
+        {
+            AnsiConsole.MarkupLine("[green]Login succeeded.[/] Session token cached.");
+        }
+        else
+        {
+            Console.WriteLine("Login succeeded. Session token cached for subsequent commands.");
+        }
+
         return 0;
     }
 
@@ -129,6 +201,38 @@ public static class Program
         new TokenCache().Clear();
         Console.WriteLine("Cached session token removed.");
         return 0;
+    }
+
+    private static async Task<int> CheckTokenAsync(CchApiOptions options, bool interactive = false)
+    {
+        var tokenCache = new TokenCache();
+        var token = tokenCache.Load();
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            WriteTokenMessage("No cached session token found. Authenticating now.", interactive);
+            return await LoginAsync(options, interactive);
+        }
+
+        if (!tokenCache.TryGetExpirationUtc(out var expirationUtc) || expirationUtc <= DateTimeOffset.UtcNow)
+        {
+            WriteTokenMessage("Cached session token is expired or has no readable retrieval time. Authenticating again.", interactive);
+            return await LoginAsync(options, interactive);
+        }
+
+        WriteTokenMessage($"Cached session token is valid until {expirationUtc.ToLocalTime():yyyy-MM-dd HH:mm:ss zzz} local time.", interactive);
+        return 0;
+    }
+
+    private static void WriteTokenMessage(string message, bool interactive)
+    {
+        if (interactive)
+        {
+            AnsiConsole.MarkupLine($"[yellow]{Markup.Escape(message)}[/]");
+        }
+        else
+        {
+            Console.WriteLine(message);
+        }
     }
 
     private static async Task<int> InvokeEndpointAsync(CchApiOptions options, string endpointName, string[] args)

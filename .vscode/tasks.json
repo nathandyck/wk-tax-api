@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build TaxApiSample",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/TaxApiSample/TaxApiSample.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
