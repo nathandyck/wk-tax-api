@@ -14,14 +14,26 @@ The documents may list multiple server URLs. Select a server appropriate to the 
 
 If copies of specifications exist elsewhere in the repository, treat `swaggerFiles/` as authoritative. Do not edit these API contract files unless the task explicitly asks to update the specifications themselves.
 
-## Implementation Choices
+## Project Architecture
 
-Do not assume a preferred programming language, framework, runtime, or user interface. First inspect the repository and the request. Follow established project conventions where they exist; otherwise choose only what the task requires, and keep the choice open when it does not. In particular, do not presume that this project should use JavaScript, Python, .NET, a command-line interface, or a graphical interface.
+- The application is a .NET 10 console CLI in `src/TaxApiSample/`.
+- `Program.cs` owns command dispatch and the interactive menu. Keep API transport and token-cache behavior in `Services/` rather than adding more logic to command handlers.
+- `Configuration/CchApiOptions.cs` binds the `CchTaxApi` settings from `appsettings.json`. Base URLs and non-secret switches belong in app settings; credentials and integrator keys belong in the root `.env`, based on `env.template`.
+- `Services/AuthClient.cs` handles authentication, `TaxApiClient.cs` invokes tax operations, `TaxApiEndpointCatalog.cs` builds the runtime endpoint list, and `TokenCache.cs` persists the session token outside the repository.
+- `src/TaxApiSample/Swagger/Auth.json` and `tsv2.json` are embedded runtime snapshots. The authoritative contracts remain the files in `swaggerFiles/`. When changing runtime behavior based on a contract, check the authoritative document and keep the relevant embedded snapshot synchronized when needed; do not edit `swaggerFiles/` unless asked to change the contract itself.
+- The CLI currently assumes cached tokens expire 15 minutes after they are saved. This is a local application policy, not an expiry duration documented by the authentication OpenAPI contract. Keep that distinction clear in code and documentation.
+- The interactive menu includes placeholder actions. Do not imply a placeholder is implemented; preserve the explicit placeholder labeling until the action has real behavior.
+
+## Development Commands
+
+- Build the CLI with `dotnet build src/TaxApiSample/TaxApiSample.csproj`.
+- Run the interactive CLI with `dotnet run --project src/TaxApiSample/TaxApiSample.csproj`.
+- Run a CLI command by appending `--` and its arguments, for example `dotnet run --project src/TaxApiSample/TaxApiSample.csproj -- list`.
+- Authentication and API commands can make live requests. Do not run them with configured credentials or call CCH Axcess services unless the task explicitly requires it. Prefer builds and focused local checks for routine validation.
 
 ## Working Practices
 
-- Read relevant source, configuration, tests, and documentation before changing behavior. Keep changes focused and preserve unrelated work already in the repository.
-- Keep credentials, tokens, and other secrets out of source control, logs, examples containing real values, and generated output. Use the repository's existing secret-management approach when available.
-- Do not call live CCH Axcess services or use real credentials unless the task explicitly requires it.
-- Add or update focused tests when practical, then run the narrowest relevant validation available (such as tests, a build, or a schema/contract check). Report checks that could not be run.
-- Update user-facing documentation when behavior or setup changes, without prescribing a language or interface style beyond the task's requirements.
+- Read the nearby implementation, configuration, and documentation before changing behavior. Keep changes focused and preserve unrelated work already in the repository.
+- Keep credentials, tokens, and other secrets out of source control, logs, examples containing real values, and generated output. Use `.env` for local secrets and never commit it or print its contents.
+- Add or update focused tests when practical, then run the narrowest relevant validation available. At minimum, build the CLI for C# changes. Report checks that could not be run.
+- Update `src/TaxApiSample/README.md` when CLI commands, setup, or user-visible behavior changes.

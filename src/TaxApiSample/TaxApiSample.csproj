@@ -13,13 +13,22 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.12" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.12" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.12" />
+    <PackageReference Include="Spectre.Console" Version="0.50.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
-    <None Include=".env.example" CopyToOutputDirectory="PreserveNewest" />
-    <EmbeddedResource Include="Swagger\Auth.json" />
-    <EmbeddedResource Include="Swagger\tsv2.json" />
+    <None Include="..\..\env.template" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\.env" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="..\..\swaggerFiles\AuthenticationServices.json">
+      <LogicalName>TaxApiSample.Swagger.Auth.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\swaggerFiles\ClientServices.json">
+      <LogicalName>TaxApiSample.Swagger.ClientServices.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\swaggerFiles\TaxServicesV2.json">
+      <LogicalName>TaxApiSample.Swagger.tsv2.json</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
