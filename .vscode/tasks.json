@@ -10,6 +10,17 @@
                 "${workspaceFolder}/src/TaxApiSample/TaxApiSample.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build CchApiDemo",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/CchApiDemo/CchApiDemo.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
         }
     ]
 }

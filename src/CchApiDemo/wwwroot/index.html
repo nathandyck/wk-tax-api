@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CCH API Workflow Lab</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">CCH Axcess API demo</p>
+        <h1>Axcess Tax API Lab</h1>
+        <p class="lede">Walk through a real service sequence without putting credentials or tokens in the browser.</p>
+      </div>
+      <span id="env-status" class="status">Checking configuration</span>
+    </header>
+
+    <section class="layout">
+      <aside class="panel steps-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Action plan</p>
+            <h2>Result path</h2>
+          </div>
+          <span id="step-count">0 / 3</span>
+        </div>
+        <ol class="steps">
+          <li data-step="authenticate"><span>01</span>
+            <div><strong>Authenticate</strong><small>Get an in-memory service token</small></div>
+          </li>
+          <li data-step="client"><span>02</span>
+            <div><strong>Find client</strong><small>Call Client Services with the token</small></div>
+          </li>
+          <li data-step="tax"><span>03</span>
+            <div><strong>Load tax statuses</strong><small>Call Tax Services v2</small></div>
+          </li>
+        </ol>
+        <button id="authenticate" class="secondary-button" type="button">Authenticate only</button>
+      </aside>
+
+      <section class="content">
+        <form id="workflow-form" class="panel form-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Inputs</p>
+              <h2>Run the sequence</h2>
+            </div>
+            <span class="method">POST /api/workflow</span>
+          </div>
+          <div class="field-grid">
+            <label>Client ID<input id="client-id" name="clientId" required placeholder="Example: 12345"></label>
+            <label>Client sub ID <span class="optional">optional</span><input id="client-sub-id" name="clientSubId"
+                placeholder="Leave blank when not applicable"></label>
+          </div>
+          <button class="primary-button" type="submit"><span>Execute Action</span><span
+              aria-hidden="true">&#8594;</span></button>
+          <p class="hint">The server reads `.env`; values are never rendered into the page.</p>
+        </form>
+
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Tax Services v2</p>
+              <h2>Return actions</h2>
+            </div>
+            <span class="method">GET /api/v1/Returns</span>
+          </div>
+          <div class="field-grid">
+            <label>Tax year<input id="tax-year" inputmode="numeric" pattern="[0-9]{4}" required
+                placeholder="Example: 2024"></label>
+            <label>Return type<select id="return-type">
+                <option value="I">I - Individual</option>
+                <option value="P">P - Partnership</option>
+                <option value="F">F - Fiduciary</option>
+                <option value="C">C - Corporation</option>
+                <option value="S">S - S Corporation</option>
+                <option value="K">K - Exempt organization</option>
+                <option value="Y">Y - Estate</option>
+                <option value="X">X - Other</option>
+              </select></label>
+          </div>
+          <button id="find-returns" class="primary-button" type="button"><span>Find returns</span><span
+              aria-hidden="true">&#8594;</span></button>
+
+          <section id="returns-table" class="panel table-panel" hidden></section>
+        </section>
+
+        <section class="panel result-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Response</p>
+              <h2 id="result-title">Ready when you are</h2>
+            </div><span id="duration"></span>
+          </div>
+          <div id="message" class="message">Authenticate first, or run the full three-step workflow.</div>
+          <pre id="result" class="result" aria-live="polite">No response yet.</pre>
+        </section>
+      </section>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+
+</html>

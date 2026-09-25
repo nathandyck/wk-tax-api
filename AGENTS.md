@@ -14,26 +14,19 @@ The documents may list multiple server URLs. Select a server appropriate to the 
 
 If copies of specifications exist elsewhere in the repository, treat `swaggerFiles/` as authoritative. Do not edit these API contract files unless the task explicitly asks to update the specifications themselves.
 
-## Project Architecture
+## Applications
 
-- The application is a .NET 10 console CLI in `src/TaxApiSample/`.
-- `Program.cs` owns command dispatch and the interactive menu. Keep API transport and token-cache behavior in `Services/` rather than adding more logic to command handlers.
-- `Configuration/CchApiOptions.cs` binds the `CchTaxApi` settings from `appsettings.json`. Base URLs and non-secret switches belong in app settings; credentials and integrator keys belong in the root `.env`, based on `env.template`.
-- `Services/AuthClient.cs` handles authentication, `TaxApiClient.cs` invokes tax operations, `TaxApiEndpointCatalog.cs` builds the runtime endpoint list, and `TokenCache.cs` persists the session token outside the repository.
-- `src/TaxApiSample/Swagger/Auth.json` and `tsv2.json` are embedded runtime snapshots. The authoritative contracts remain the files in `swaggerFiles/`. When changing runtime behavior based on a contract, check the authoritative document and keep the relevant embedded snapshot synchronized when needed; do not edit `swaggerFiles/` unless asked to change the contract itself.
-- The CLI currently assumes cached tokens expire 15 minutes after they are saved. This is a local application policy, not an expiry duration documented by the authentication OpenAPI contract. Keep that distinction clear in code and documentation.
-- The interactive menu includes placeholder actions. Do not imply a placeholder is implemented; preserve the explicit placeholder labeling until the action has real behavior.
+This repository contains the ASP.NET Core web app in `src/CchApiDemo/` and the .NET console CLI in `src/TaxApiSample/`.
+Read the nearest project-level `AGENTS.md` before changing either application. Keep framework-specific architecture, commands, and user experience guidance in those files.
 
 ## Development Commands
 
-- Build the CLI with `dotnet build src/TaxApiSample/TaxApiSample.csproj`.
-- Run the interactive CLI with `dotnet run --project src/TaxApiSample/TaxApiSample.csproj`.
-- Run a CLI command by appending `--` and its arguments, for example `dotnet run --project src/TaxApiSample/TaxApiSample.csproj -- list`.
-- Authentication and API commands can make live requests. Do not run them with configured credentials or call CCH Axcess services unless the task explicitly requires it. Prefer builds and focused local checks for routine validation.
+Use the build, run, and validation commands in the relevant project-level `AGENTS.md`.
 
 ## Working Practices
 
-- Read the nearby implementation, configuration, and documentation before changing behavior. Keep changes focused and preserve unrelated work already in the repository.
-- Keep credentials, tokens, and other secrets out of source control, logs, examples containing real values, and generated output. Use `.env` for local secrets and never commit it or print its contents.
-- Add or update focused tests when practical, then run the narrowest relevant validation available. At minimum, build the CLI for C# changes. Report checks that could not be run.
-- Update `src/TaxApiSample/README.md` when CLI commands, setup, or user-visible behavior changes.
+Read the nearby implementation, configuration, project instructions, and documentation before changing behavior. Keep changes focused and preserve unrelated work.
+Keep credentials, integrator keys, tokens, and other secrets out of source control, logs, examples containing real values, and generated output. Use the root `.env` for local secrets; never commit it or print its contents.
+Authentication and API operations can make live requests. Do not call CCH Axcess unless the task explicitly requires it; prefer builds and local checks.
+Add or update focused tests when practical, run relevant checks, and report anything that could not be verified.
+Update the README belonging to the application whose setup or user-visible behavior changes.
