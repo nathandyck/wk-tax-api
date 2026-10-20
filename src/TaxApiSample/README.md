@@ -22,8 +22,8 @@ use.
    ```json
    {
      "CchTaxApi": {
-       "AuthBaseUrl": "https://test4api.cchaxcess.com/api/AuthService",
-       "TaxServiceBaseUrl": "https://test4api.cchaxcess.com/taxservices/oiptax",
+       "AuthBaseUrl": "https://api.cchaxcess.com/api/AuthService",
+       "TaxServiceBaseUrl": "https://api.cchaxcess.com/taxservices/oiptax",
        "UseAzureAuthenticate": false
      }
    }
