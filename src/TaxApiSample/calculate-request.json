@@ -1,0 +1,4 @@
+{
+  "ReturnId": ["2025I:UCAPICL36:V1"],
+  "ConfigurationXml": "<TaxCalculateReturnOptions><TaxReturnClientDataOptions>KeepCurrentClientInformationInTaxReturn</TaxReturnClientDataOptions><TaxReturnCalcAuthorizationOptions>ApplyAuthorizationsIfNeeded</TaxReturnCalcAuthorizationOptions></TaxCalculateReturnOptions>"
+}

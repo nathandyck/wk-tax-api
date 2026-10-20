@@ -87,13 +87,23 @@ token on startup and attempts to authenticate if the token is missing or
 expired, so configure `.env` and verify the development URLs in
 `appsettings.json` before launching.
 
-### Examples
+### Other Examples
 
+You must build the project before running these commands by follow the debugging steps above or run the following command:
+
+```bash
+$> dotnet build ./src/TaxApiSample/TaxApiSample.csproj
 ```
-$> TaxApiSample login
-$> TaxApiSample Returns --query "$filter=TaxYear eq '2023'" --query "$orderby=ReturnClientName"
-$> TaxApiSample CalculateReturn --body @calculate-request.json
-$> TaxApiSample Returns --method DELETE --body '{"ReturnId":["2021I:TEST1:V1"],"RecoveryCopies":false,"K1ImportFiles":false}'
+
+```bash
+$> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample login
+$> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample check-token
+$> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample Returns --method GET --query "\$filter=TaxYear eq '2025'"
+# This a 2-part process to illustrate how a Batch process works
+# Part 1 - Calculate a single return as a batch
+$> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample CalculateReturn --body @src/TaxApiSample/calculate-request.json
+# Part 2 - check the status of that batch by calling this using the `ExecutionID` returned from part 1
+$> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample BatchStatus --method GET --query "\$filter=BatchGuid eq '<ExecutionID-from-previous-step>' and Expand eq 'Items'"
 ```
 
 > PowerShell note: wrap query strings containing `$filter`/`$orderby` in
