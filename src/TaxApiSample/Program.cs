@@ -1,3 +1,4 @@
+using System.Text.Json;
 using DotNetEnv;
 using Microsoft.Extensions.Configuration;
 using Spectre.Console;
@@ -48,6 +49,7 @@ public static class Program
                 "login" => await LoginAsync(options),
                 "check-token" => await CheckTokenAsync(options),
                 "logout" => Logout(),
+                "compare-staff" => await CompareStaffAsync(options, rest),
                 _ => await InvokeEndpointAsync(options, command, rest),
             };
         }
@@ -71,6 +73,7 @@ public static class Program
               TaxApiSample check-token
               TaxApiSample logout
               TaxApiSample list
+              TaxApiSample compare-staff [staff.xls] [--authorization <token>]
               TaxApiSample <endpoint-name> [--method GET|POST|PUT|DELETE]
                                             [--query key=value ...]
                                             [--body '<json>' | --body @file.json]
@@ -105,6 +108,7 @@ public static class Program
             "Placeholder action 1",
             "Placeholder action 2",
             "Placeholder action 3",
+            "Compare staff.xls with Axcess Tax",
             "Check auth token",
             "Exit"
         };
@@ -129,6 +133,12 @@ public static class Program
                 continue;
             }
 
+            if (action == "Compare staff.xls with Axcess Tax")
+            {
+                await CompareStaffAsync(options, []);
+                continue;
+            }
+
             AnsiConsole.MarkupLine($"[yellow]{Markup.Escape(action)} is not implemented yet.[/]");
         }
     }
@@ -149,6 +159,65 @@ public static class Program
             }
         }
 
+        return 0;
+    }
+
+    private static async Task<int> CompareStaffAsync(CchApiOptions options, string[] args)
+    {
+        string? workbookPath = null;
+        string? authorizationToken = null;
+
+        for (var i = 0; i < args.Length; i++)
+        {
+            switch (args[i])
+            {
+                case "--authorization":
+                    authorizationToken = RequireValue(args, ref i, "--authorization");
+                    break;
+                default:
+                    if (args[i].StartsWith("--", StringComparison.Ordinal))
+                    {
+                        throw new ArgumentException($"Unrecognized argument '{args[i]}'.");
+                    }
+
+                    if (workbookPath is not null)
+                    {
+                        throw new ArgumentException("Only one staff workbook path may be provided.");
+                    }
+
+                    workbookPath = args[i];
+                    break;
+            }
+        }
+
+        var integratorKey = Environment.GetEnvironmentVariable("INTEGRATOR_KEY") ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(integratorKey))
+        {
+            throw new InvalidOperationException("No integrator key found. Set INTEGRATOR_KEY in .env.");
+        }
+
+        var securityToken = new TokenCache().Load();
+        if (string.IsNullOrWhiteSpace(securityToken) && string.IsNullOrWhiteSpace(authorizationToken))
+        {
+            throw new InvalidOperationException(
+                "No session token found. Run 'TaxApiSample login' first, or pass --authorization.");
+        }
+
+        using var httpClient = new HttpClient();
+        var staffClient = new StaffApiClient(httpClient, options);
+        var comparisonService = new StaffComparisonService(staffClient);
+        var comparison = await comparisonService.CompareAsync(
+            workbookPath ?? "staff.xls",
+            integratorKey,
+            securityToken,
+            authorizationToken,
+            CancellationToken.None);
+
+        Console.WriteLine(JsonSerializer.Serialize(comparison, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            PropertyNamingPolicy = null
+        }));
         return 0;
     }
 

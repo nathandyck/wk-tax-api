@@ -12,6 +12,8 @@ public sealed class CchApiOptions
 
     public string TaxServiceBaseUrl { get; set; } = string.Empty;
 
+    public string StaffServiceBaseUrl { get; set; } = string.Empty;
+
     /// <summary>
     /// When true, the "login" command calls AzureAuthenticate instead of Authenticate.
     /// </summary>

@@ -7,6 +7,7 @@ The OpenAPI 3 JSON documents in `swaggerFiles/` are the authoritative descriptio
 - `swaggerFiles/AuthenticationServices.json` describes authentication operations.
 - `swaggerFiles/ClientServices.json` describes client operations.
 - `swaggerFiles/TaxServicesV2.json` describes Tax Services v2 operations.
+- `swaggerFiles/StaffServices.json` describes Staff operations.
 
 For each operation, verify the documented path and HTTP method, parameters, request and response schemas, required headers, authentication/security requirements, and relevant shared schema references. Preserve documented JSON property names, types, casing, required fields, and response handling. Do not infer API behavior from a service name, an existing code path, or a comment when the OpenAPI document specifies otherwise.
 

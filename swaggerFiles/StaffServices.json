@@ -1,0 +1,2415 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Staff",
+        "description": "Create, read, or update basic staff information and signer configuration.<br/><br/>Staff are the people who work at an accounting firm and signers are staff that are [configured to sign tax returns]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/TaxPlugIntoFAM/STF_StaffProfile_Tax.htm \"view help article\").<br /> <br /> **_Note_**: Some staff of CCH Axcess are not users.",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.cchaxcess.com/api/StaffService"
+        },
+        {
+            "url": "https://authcaptcha.cchaxcess.com/api/StaffService"
+        },
+        {
+            "url": "https://login.cchaxcess.com/api/StaffService"
+        },
+        {
+            "url": "https://authadmin.cchaxcess.com/api/StaffService"
+        },
+        {
+            "url": "https://directoryservice.cchaxcess.com/api/StaffService"
+        },
+        {
+            "url": "https://taxapi.cchaxcess.com/api/StaffService"
+        },
+        {
+            "url": "https://k1api.cchaxcess.com/api/StaffService"
+        }
+    ],
+    "paths": {
+        "/v1.0/Staff": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Creates Staff",
+                "description": "Creates Staff",
+                "operationId": "Creates-Staff",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Creates Staff",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffList": [
+                                    {
+                                        "FirmDepartment": "String content",
+                                        "FirmPosition": "String content",
+                                        "BusinessUnitGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "TeamGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ReportName": "String content",
+                                        "StaffStatusCd": "String content",
+                                        "HomeOfficeName": "String content",
+                                        "FirmDepartmentName": "String content",
+                                        "FirmPositionName": "String content",
+                                        "BusinessUnitName": "String content",
+                                        "ReportingManagerName": "String content",
+                                        "UserGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "UserTypeCode": "String content",
+                                        "HireTypeName": "String content",
+                                        "ReportViewSecurityLevel": 2147483647,
+                                        "FirmDepartmentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "FirmGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "FirstName": "String content",
+                                        "FirmPositionGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "HomeOfficeGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastName": "String content",
+                                        "MiddleName": "String content",
+                                        "StaffId": "String content",
+                                        "HireType": "String content",
+                                        "ReportingManagerStaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "SalaryType": "String content",
+                                        "SystemEmailAddress": "String content",
+                                        "UserTypeCd": "String content",
+                                        "UserID": "String content",
+                                        "LastActiveDtTm": "/Date(928174800000-0700)/",
+                                        "LastInactiveDtTm": "/Date(928174800000-0700)/",
+                                        "UnAssignLicenseFlg": true,
+                                        "UILabelSettings": "String content",
+                                        "CurrentSalary": 12678967.543233,
+                                        "EmergencyContactName": "String content",
+                                        "EmergencyContactPhone": "String content",
+                                        "EmergencyContactRelationship": "String content",
+                                        "EmployeeNumber": "String content",
+                                        "HireDate": "/Date(928174800000-0700)/",
+                                        "HireSalary": 12678967.543233,
+                                        "Honorific": "String content",
+                                        "ReviewDate": "/Date(928174800000-0700)/",
+                                        "Suffix": "String content",
+                                        "SendEmailFlg": true,
+                                        "TaxId": "String content",
+                                        "TerminationDate": "/Date(928174800000-0700)/"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Updates Staff",
+                "description": "Updates Staff",
+                "operationId": "Updates-Staff",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updates Staff",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffList": [
+                                    {
+                                        "FirmDepartment": "String content",
+                                        "FirmPosition": "String content",
+                                        "BusinessUnitGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "TeamGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ReportName": "String content",
+                                        "StaffStatusCd": "String content",
+                                        "HomeOfficeName": "String content",
+                                        "FirmDepartmentName": "String content",
+                                        "FirmPositionName": "String content",
+                                        "BusinessUnitName": "String content",
+                                        "ReportingManagerName": "String content",
+                                        "UserGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "UserTypeCode": "String content",
+                                        "HireTypeName": "String content",
+                                        "ReportViewSecurityLevel": 2147483647,
+                                        "FirmDepartmentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "FirmGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "FirstName": "String content",
+                                        "FirmPositionGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "HomeOfficeGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastName": "String content",
+                                        "MiddleName": "String content",
+                                        "StaffId": "String content",
+                                        "HireType": "String content",
+                                        "ReportingManagerStaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "SalaryType": "String content",
+                                        "SystemEmailAddress": "String content",
+                                        "UserTypeCd": "String content",
+                                        "UserID": "String content",
+                                        "LastActiveDtTm": "/Date(928174800000-0700)/",
+                                        "LastInactiveDtTm": "/Date(928174800000-0700)/",
+                                        "UnAssignLicenseFlg": true,
+                                        "UILabelSettings": "String content",
+                                        "CurrentSalary": 12678967.543233,
+                                        "EmergencyContactName": "String content",
+                                        "EmergencyContactPhone": "String content",
+                                        "EmergencyContactRelationship": "String content",
+                                        "EmployeeNumber": "String content",
+                                        "HireDate": "/Date(928174800000-0700)/",
+                                        "HireSalary": 12678967.543233,
+                                        "Honorific": "String content",
+                                        "ReviewDate": "/Date(928174800000-0700)/",
+                                        "Suffix": "String content",
+                                        "TaxId": "String content",
+                                        "TerminationDate": "/Date(928174800000-0700)/"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get staff based on the staff Id",
+                "description": "Get staff based on the staff Id",
+                "operationId": "Get-staff-based-on-the-staff-Id",
+                "parameters": [
+                    {
+                        "name": "STAFFID",
+                        "in": "query",
+                        "description": "STAFFID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "FirmDepartment": "String content",
+                                    "FirmPosition": "String content",
+                                    "BusinessUnitGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "TeamGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "ReportName": "String content",
+                                    "StaffStatusCd": "String content",
+                                    "HomeOfficeName": "String content",
+                                    "FirmDepartmentName": "String content",
+                                    "FirmPositionName": "String content",
+                                    "BusinessUnitName": "String content",
+                                    "ReportingManagerName": "String content",
+                                    "UserGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "UserTypeCode": "String content",
+                                    "HireTypeName": "String content",
+                                    "ReportViewSecurityLevel": 2147483647,
+                                    "FirmDepartmentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "FirmGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "FirstName": "String content",
+                                    "FirmPositionGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "HomeOfficeGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "LastName": "String content",
+                                    "MiddleName": "String content",
+                                    "StaffId": "String content",
+                                    "HireType": "String content",
+                                    "ReportingManagerStaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "SalaryType": "String content",
+                                    "SystemEmailAddress": "String content",
+                                    "UserTypeCd": "String content",
+                                    "UserID": "String content",
+                                    "LastActiveDtTm": "1999-05-31T18:20:00.0000000+00:00",
+                                    "LastInactiveDtTm": "1999-05-31T18:20:00.0000000+00:00",
+                                    "UnAssignLicenseFlg": true,
+                                    "UILabelSettings": "String content",
+                                    "CurrentSalary": 12678967.543233,
+                                    "EmergencyContactName": "String content",
+                                    "EmergencyContactPhone": "String content",
+                                    "EmergencyContactRelationship": "String content",
+                                    "EmployeeNumber": "String content",
+                                    "HireDate": "1999-05-31T18:20:00.0000000+00:00",
+                                    "HireSalary": 12678967.543233,
+                                    "Honorific": "String content",
+                                    "ReviewDate": "1999-05-31T18:20:00.0000000+00:00",
+                                    "Suffix": "String content",
+                                    "TaxId": "String content",
+                                    "TerminationDate": "1999-05-31T18:20:00.0000000+00:00"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Address": {
+            "post": {
+                "tags": [
+                    "Contact-Information",
+                    "Address"
+                ],
+                "summary": "Creates Staff Address",
+                "description": "Creates Staff Address",
+                "operationId": "Creates-Staff-Address",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Creates Staff Address",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffAddress": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "AddressLine1": "String content",
+                                        "AddressLine2": "String content",
+                                        "AddressLine3": "String content",
+                                        "City": "String content",
+                                        "Country": "String content",
+                                        "PostalCode": "String content",
+                                        "StateOrRegion": "String content",
+                                        "AddressType": "String content",
+                                        "IsMailingAddress": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content",
+                                        "StateCode": "String content",
+                                        "AptOrSuiteNo": "String content",
+                                        "CountryName": "String content"
+                                    }
+                                ],
+                                "StaffId": "String content"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contact-Information",
+                    "Address"
+                ],
+                "summary": "Updates Staff Address",
+                "description": "Updates Staff Address",
+                "operationId": "Updates-Staff-Address",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updates Staff Address",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffAddress": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "AddressLine1": "String content",
+                                        "AddressLine2": "String content",
+                                        "AddressLine3": "String content",
+                                        "City": "String content",
+                                        "Country": "String content",
+                                        "PostalCode": "String content",
+                                        "StateOrRegion": "String content",
+                                        "AddressType": "String content",
+                                        "IsMailingAddress": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content",
+                                        "StateCode": "String content",
+                                        "AptOrSuiteNo": "String content",
+                                        "CountryName": "String content"
+                                    }
+                                ],
+                                "StaffId": "String content"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Email": {
+            "post": {
+                "tags": [
+                    "Contact-Information",
+                    "Email"
+                ],
+                "summary": "Creates Staff Email",
+                "description": "Creates Staff Email",
+                "operationId": "Creates-Staff-Email",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Creates Staff Email",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffEmail": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "EmailAddress": "String content",
+                                        "EmailType": "String content",
+                                        "Status": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ],
+                                "StaffId": "String content"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contact-Information",
+                    "Email"
+                ],
+                "summary": "Updates Staff Email",
+                "description": "Updates Staff Email",
+                "operationId": "Updates-Staff-Email",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updates Staff Email",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffEmail": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "EmailAddress": "String content",
+                                        "EmailType": "String content",
+                                        "Status": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ],
+                                "StaffId": "String content"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/GetAllStaffForLookUp": {
+            "get": {
+                "tags": [
+                    "Lookup"
+                ],
+                "summary": "Get All staff for Lookup",
+                "description": "Get All staff for Lookup",
+                "operationId": "Get-All-staff-for-Lookup",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "Name": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/InstantMessenger": {
+            "post": {
+                "tags": [
+                    "Contact-Information",
+                    "Instant-Messenger"
+                ],
+                "summary": "Creates Staff Instant Messenger",
+                "description": "Creates Staff Instant Messenger",
+                "operationId": "Creates-Staff-Instant-Messenger",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Creates Staff Instant Messenger",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffId": "String content",
+                                "StaffInstantMessenger": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "Status": true,
+                                        "ScreenName": "String content",
+                                        "InstantMessengerType": "String content",
+                                        "InstantMessengerProvider": "String content",
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contact-Information",
+                    "Instant-Messenger"
+                ],
+                "summary": "Updates Staff Instant Messenger",
+                "description": "Updates Staff Instant Messenger",
+                "operationId": "Updates-Staff-Instant-Messenger",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updates Staff Instant Messenger",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffId": "String content",
+                                "StaffInstantMessenger": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "Status": true,
+                                        "ScreenName": "String content",
+                                        "InstantMessengerType": "String content",
+                                        "InstantMessengerProvider": "String content",
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Phone": {
+            "post": {
+                "tags": [
+                    "Contact-Information",
+                    "Phone"
+                ],
+                "summary": "Creates Staff Phone",
+                "description": "Creates Staff Phone",
+                "operationId": "Creates-Staff-Phone",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Creates Staff Phone",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffId": "String content",
+                                "StaffPhone": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "Number": "String content",
+                                        "Extension": "String content",
+                                        "PhoneType": "String content",
+                                        "CountryCode": "String content",
+                                        "IsSIPNumber": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contact-Information",
+                    "Phone"
+                ],
+                "summary": "Updates Staff Phone",
+                "description": "Updates Staff Phone",
+                "operationId": "Updates-Staff-Phone",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updates Staff Phone",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "StaffId": "String content",
+                                "StaffPhone": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "Number": "String content",
+                                        "Extension": "String content",
+                                        "PhoneType": "String content",
+                                        "CountryCode": "String content",
+                                        "IsSIPNumber": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/staff/profile": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get logged in user staff details",
+                "description": "Get logged in user staff details",
+                "operationId": "Get-logged-in-user-staff-details",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "FirmDepartment": "String content",
+                                    "FirmPosition": "String content",
+                                    "BusinessUnitGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "TeamGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "ReportName": "String content",
+                                    "StaffStatusCd": "String content",
+                                    "HomeOfficeName": "String content",
+                                    "FirmDepartmentName": "String content",
+                                    "FirmPositionName": "String content",
+                                    "BusinessUnitName": "String content",
+                                    "ReportingManagerName": "String content",
+                                    "UserGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "UserTypeCode": "String content",
+                                    "HireTypeName": "String content",
+                                    "ReportViewSecurityLevel": 2147483647,
+                                    "FirmDepartmentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "FirmGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "FirstName": "String content",
+                                    "FirmPositionGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "HomeOfficeGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "LastName": "String content",
+                                    "MiddleName": "String content",
+                                    "StaffId": "String content",
+                                    "HireType": "String content",
+                                    "ReportingManagerStaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "SalaryType": "String content",
+                                    "SystemEmailAddress": "String content",
+                                    "UserTypeCd": "String content",
+                                    "UserID": "String content",
+                                    "LastActiveDtTm": "1999-05-31T18:20:00.0000000+00:00",
+                                    "LastInactiveDtTm": "1999-05-31T18:20:00.0000000+00:00",
+                                    "UnAssignLicenseFlg": true,
+                                    "UILabelSettings": "String content",
+                                    "CurrentSalary": 12678967.543233,
+                                    "EmergencyContactName": "String content",
+                                    "EmergencyContactPhone": "String content",
+                                    "EmergencyContactRelationship": "String content",
+                                    "EmployeeNumber": "String content",
+                                    "HireDate": "1999-05-31T18:20:00.0000000+00:00",
+                                    "HireSalary": 12678967.543233,
+                                    "Honorific": "String content",
+                                    "ReviewDate": "1999-05-31T18:20:00.0000000+00:00",
+                                    "Suffix": "String content",
+                                    "TaxId": "String content",
+                                    "TerminationDate": "1999-05-31T18:20:00.0000000+00:00"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/RestrictedFields": {
+            "get": {
+                "tags": [
+                    "Firm"
+                ],
+                "summary": "Get ADSync Mapped Restricted Fields",
+                "description": "Get ADSync Mapped Restricted Fields",
+                "operationId": "Get-ADSync-Mapped-Restricted-Fields",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "RestrictedFields": [
+                                        "String content"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Signer": {
+            "post": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Create Signer",
+                "description": "Create Signer",
+                "operationId": "Create-Signer",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create Signer",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "FederalAlternateId": "String content",
+                                "IsSelfEmployed": true,
+                                "IsPTINConfirmed": false,
+                                "NYSPreparerId": "String content",
+                                "SignerCAF": "String content",
+                                "SignerCityandState": "String content",
+                                "SignerCode": "String content",
+                                "SignerCountry": "String content",
+                                "SignerDesignationCode": "String content",
+                                "SignerDesigneePin": "String content",
+                                "SignerEROPin": "String content",
+                                "SignerEmail": "String content",
+                                "SignerEmployeeId": "String content",
+                                "SignerFax": "String content",
+                                "SignerForeignProvince": "String content",
+                                "SignerJurisdiction": "String content",
+                                "SignerLicenseNumber": "String content",
+                                "SignerLocationGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                "SignerName": "String content",
+                                "SignerNycPreparerIdExclusionCode": "String content",
+                                "SignerPhone": "String content",
+                                "SignerSocSecNum": "String content",
+                                "SignerStreet": "String content",
+                                "SignerZipCode": "String content",
+                                "StaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Update Signer",
+                "description": "Update Signer",
+                "operationId": "Update-Signer",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Signer",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "FederalAlternateId": "String content",
+                                "IsSelfEmployed": true,
+                                "IsPTINConfirmed": false,
+                                "NYSPreparerId": "String content",
+                                "SignerCAF": "String content",
+                                "SignerCityandState": "String content",
+                                "SignerCode": "String content",
+                                "SignerCountry": "String content",
+                                "SignerDesignationCode": "String content",
+                                "SignerDesigneePin": "String content",
+                                "SignerEROPin": "String content",
+                                "SignerEmail": "String content",
+                                "SignerEmployeeId": "String content",
+                                "SignerFax": "String content",
+                                "SignerForeignProvince": "String content",
+                                "SignerJurisdiction": "String content",
+                                "SignerLicenseNumber": "String content",
+                                "SignerLocationGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                "SignerName": "String content",
+                                "SignerNycPreparerIdExclusionCode": "String content",
+                                "SignerPhone": "String content",
+                                "SignerSocSecNum": "String content",
+                                "SignerStreet": "String content",
+                                "SignerZipCode": "String content",
+                                "StaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "DetailedErrorMessage": "String content",
+                                    "ErrorReport": {
+                                        "Details": [
+                                            {
+                                                "ErrorLevel": 0,
+                                                "ErrorType": 0,
+                                                "Messages": [
+                                                    {
+                                                        "ErrorCode": "String content",
+                                                        "ErrorDescription": "String content"
+                                                    }
+                                                ],
+                                                "RowNumber": 2147483647,
+                                                "ClientID": "String content",
+                                                "ClientName": "String content",
+                                                "ClientSubID": "String content",
+                                                "IsLinked": true
+                                            }
+                                        ]
+                                    },
+                                    "FailedRecordCount": 2147483647,
+                                    "Message": "String content",
+                                    "SucceededLevel": 0,
+                                    "SucceededRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Signer/Country": {
+            "get": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Get Signer Country",
+                "description": "Get Signer Country",
+                "operationId": "Get-Signer-Country",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "CountryDictionary": [
+                                        {
+                                            "Key": "String content",
+                                            "Value": "String content"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Signer/Designation": {
+            "get": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Get Signer Designation Codes",
+                "description": "Get Signer Designation Codes",
+                "operationId": "Get-Signer-Designation-Codes",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "Description": "String content",
+                                        "IsDefault": true,
+                                        "ItemOrder": 32767,
+                                        "ModuleName": "String content",
+                                        "ParameterCode": "String content",
+                                        "ParameterValue": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Signer/Location": {
+            "get": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Get Signer Location",
+                "description": "Get Signer Location",
+                "operationId": "Get-Signer-Location",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "SignerLocation": "String content",
+                                        "SignerLocationGuid": "1627aea5-8e0a-4371-9022-9b504344e724"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/Signer/NYTPRIN": {
+            "get": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Get Signer NYTPRIN Exclusion Codes",
+                "description": "Get Signer NYTPRIN Exclusion Codes",
+                "operationId": "Get-Signer-NYTPRIN-Exclusion-Codes",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "Description": "String content",
+                                        "IsDefault": true,
+                                        "ItemOrder": 32767,
+                                        "ModuleName": "String content",
+                                        "ParameterCode": "String content",
+                                        "ParameterValue": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/{STAFFGUID}/Signer": {
+            "get": {
+                "tags": [
+                    "Signer"
+                ],
+                "summary": "Get Signer By Staff Guid",
+                "description": "Get Signer By Staff Guid",
+                "operationId": "Get-Signer-By-Staff-Guid",
+                "parameters": [
+                    {
+                        "name": "STAFFGUID",
+                        "in": "path",
+                        "description": "STAFFGUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "FederalAlternateId": "String content",
+                                    "IsSelfEmployed": true,
+                                    "IsPTINConfirmed": false,
+                                    "NYSPreparerId": "String content",
+                                    "SignerCAF": "String content",
+                                    "SignerCityandState": "String content",
+                                    "SignerCode": "String content",
+                                    "SignerCountry": "String content",
+                                    "SignerDesignationCode": "String content",
+                                    "SignerDesigneePin": "String content",
+                                    "SignerEROPin": "String content",
+                                    "SignerEmail": "String content",
+                                    "SignerEmployeeId": "String content",
+                                    "SignerFax": "String content",
+                                    "SignerForeignProvince": "String content",
+                                    "SignerJurisdiction": "String content",
+                                    "SignerLicenseNumber": "String content",
+                                    "SignerLocationGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                    "SignerName": "String content",
+                                    "SignerNycPreparerIdExclusionCode": "String content",
+                                    "SignerPhone": "String content",
+                                    "SignerSocSecNum": "String content",
+                                    "SignerStreet": "String content",
+                                    "SignerZipCode": "String content",
+                                    "StaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/{STAFFID}/AddressList": {
+            "get": {
+                "tags": [
+                    "Contact-Information",
+                    "Address"
+                ],
+                "summary": "Gets the staff Address List based on the Staff Id",
+                "description": "Gets the staff Address List based on the Staff Id",
+                "operationId": "Gets-the-staff-Address-List-based-on-the-Staff-Id",
+                "parameters": [
+                    {
+                        "name": "STAFFID",
+                        "in": "path",
+                        "description": "STAFFID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "AddressLine1": "String content",
+                                        "AddressLine2": "String content",
+                                        "AddressLine3": "String content",
+                                        "City": "String content",
+                                        "Country": "String content",
+                                        "PostalCode": "String content",
+                                        "StateOrRegion": "String content",
+                                        "AddressType": "String content",
+                                        "IsMailingAddress": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content",
+                                        "StateCode": "String content",
+                                        "AptOrSuiteNo": "String content",
+                                        "CountryName": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/{STAFFID}/EmailList": {
+            "get": {
+                "tags": [
+                    "Contact-Information",
+                    "Email"
+                ],
+                "summary": "Gets the List of Staff Emails based on the Staff Id",
+                "description": "Gets the List of Staff Emails based on the Staff Id",
+                "operationId": "Gets-the-List-of-Staff-Emails-based-on-the-Staff-Id",
+                "parameters": [
+                    {
+                        "name": "STAFFID",
+                        "in": "path",
+                        "description": "STAFFID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "EmailAddress": "String content",
+                                        "EmailType": "String content",
+                                        "Status": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/{STAFFID}/InstantMessengerList": {
+            "get": {
+                "tags": [
+                    "Contact-Information",
+                    "Instant-Messenger"
+                ],
+                "summary": "Gets the List of Staff Instant Messengers based on the Staff Id",
+                "description": "Gets the List of Staff Instant Messengers based on the Staff Id",
+                "operationId": "Gets-the-List-of-Staff-Instant-Messengers-based-on-the-Staff-Id",
+                "parameters": [
+                    {
+                        "name": "STAFFID",
+                        "in": "path",
+                        "description": "STAFFID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "Status": true,
+                                        "ScreenName": "String content",
+                                        "InstantMessengerType": "String content",
+                                        "InstantMessengerProvider": "String content",
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/Staff/{STAFFID}/PhoneList": {
+            "get": {
+                "tags": [
+                    "Contact-Information",
+                    "Phone"
+                ],
+                "summary": "Gets the List of Staff Phones based on the Staff Id",
+                "description": "Gets the List of Staff Phones based on the Staff Id",
+                "operationId": "Gets-the-List-of-Staff-Phones-based-on-the-Staff-Id",
+                "parameters": [
+                    {
+                        "name": "STAFFID",
+                        "in": "path",
+                        "description": "STAFFID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "TimeStampString": "String content",
+                                        "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ParentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "LastUpdatedBy": "String content",
+                                        "LastUpdatedDateTime": "/Date(928174800000-0700)/",
+                                        "CreatedBy": "String content",
+                                        "CreatedDateTime": "/Date(928174800000-0700)/",
+                                        "InternalId": 9223372036854776000,
+                                        "ParentInternalId": 9223372036854776000,
+                                        "Number": "String content",
+                                        "Extension": "String content",
+                                        "PhoneType": "String content",
+                                        "CountryCode": "String content",
+                                        "IsSIPNumber": true,
+                                        "IsPrimary": true,
+                                        "EmployeePlanSubEntityTypeCd": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1.0/staff/{STAFFID}/teams": {
+            "get": {
+                "tags": [
+                    "Team"
+                ],
+                "summary": "Get staff organizational team",
+                "description": "Get staff organizational team",
+                "operationId": "Get-staff-organizational-team",
+                "parameters": [
+                    {
+                        "name": "STAFFID",
+                        "in": "path",
+                        "description": "STAFFID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "TeamGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "Name": "String content",
+                                        "Description": "String content",
+                                        "IsActive": true,
+                                        "FirmGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "FirmDepartmentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                        "ActiveDt": "/Date(928167600000-0500)/",
+                                        "InactiveDt": "/Date(928167600000-0500)/",
+                                        "ActiveStatus": "String content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "IntegratorKey",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ],
+    "x-ms-paths": {
+        "/v1.0/Staff?action=Search": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Search for Staff",
+                "description": "Search for Staff",
+                "operationId": "Search-for-Staff",
+                "parameters": [
+                    {
+                        "name": "Integratorkey",
+                        "in": "header",
+                        "description": "integratorkey/subscription key in header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "_Required_ when using [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") which is recommended for all firms. Firms using [Federation Services in CCH Axcess Login Options](https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_FederationServices.htm \"view help article\") **must** use OAuth 2.0 and the Authorization header. The header value is \"Bearer \" followed by the JWT access token.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Security",
+                        "in": "header",
+                        "description": "_Required_ when using the token returned by [AzureAuthenticate](https://developers.cchaxcess.com/api-details#api=172e8059a9964ddd8614d530b1dafa7e&operation=Authenticates-the-user---Azure \"view operation details\") endpoint. This type of authentication is only compatible with firms using [CCH Axcess login method]( https://z001download.cchaxcess.com/pfxbrowserhelp/FAMHelp/Content/ADPlugin/AD_CCHLoginMode.htm \"view help article\"). While such firms **may** use the Security header, the Authorization header and [OAuth 2.0 token authentication](https://support.cch.com/kb/solution/000106115 \"view support article\") is recommended for all firms.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Search for Staff",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "Filters": [
+                                    {
+                                        "AndOr": 0,
+                                        "Field": 0,
+                                        "Operator": 0,
+                                        "Value": "String content"
+                                    }
+                                ],
+                                "PageIndex": 2147483647,
+                                "PageSize": 2147483647,
+                                "RecordCountRequired": true
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "StaffList": [
+                                        {
+                                            "FirmDepartment": "String content",
+                                            "FirmPosition": "String content",
+                                            "BusinessUnitGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "TeamGUID": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "ReportName": "String content",
+                                            "StaffStatusCd": "String content",
+                                            "HomeOfficeName": "String content",
+                                            "FirmDepartmentName": "String content",
+                                            "FirmPositionName": "String content",
+                                            "BusinessUnitName": "String content",
+                                            "ReportingManagerName": "String content",
+                                            "UserGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "UserTypeCode": "String content",
+                                            "HireTypeName": "String content",
+                                            "ReportViewSecurityLevel": 2147483647,
+                                            "FirmDepartmentGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "FirmGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "FirstName": "String content",
+                                            "FirmPositionGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "HomeOfficeGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "LastName": "String content",
+                                            "MiddleName": "String content",
+                                            "StaffId": "String content",
+                                            "HireType": "String content",
+                                            "ReportingManagerStaffGuid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "Guid": "1627aea5-8e0a-4371-9022-9b504344e724",
+                                            "SalaryType": "String content",
+                                            "SystemEmailAddress": "String content",
+                                            "UserTypeCd": "String content",
+                                            "UserID": "String content",
+                                            "LastActiveDtTm": "1999-05-31T18:20:00.0000000+00:00",
+                                            "LastInactiveDtTm": "1999-05-31T18:20:00.0000000+00:00",
+                                            "UnAssignLicenseFlg": true,
+                                            "UILabelSettings": "String content",
+                                            "CurrentSalary": 12678967.543233,
+                                            "EmergencyContactName": "String content",
+                                            "EmergencyContactPhone": "String content",
+                                            "EmergencyContactRelationship": "String content",
+                                            "EmployeeNumber": "String content",
+                                            "HireDate": "1999-05-31T18:20:00.0000000+00:00",
+                                            "HireSalary": 12678967.543233,
+                                            "Honorific": "String content",
+                                            "ReviewDate": "1999-05-31T18:20:00.0000000+00:00",
+                                            "Suffix": "String content",
+                                            "TaxId": "String content",
+                                            "TerminationDate": "1999-05-31T18:20:00.0000000+00:00"
+                                        }
+                                    ],
+                                    "TotalRecordCount": 2147483647
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

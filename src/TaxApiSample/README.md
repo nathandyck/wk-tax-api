@@ -24,6 +24,7 @@ use.
      "CchTaxApi": {
        "AuthBaseUrl": "https://api.cchaxcess.com/api/AuthService",
        "TaxServiceBaseUrl": "https://api.cchaxcess.com/taxservices/oiptax",
+       "StaffServiceBaseUrl": "https://api.cchaxcess.com/api/StaffService",
        "UseAzureAuthenticate": false
      }
    }
@@ -40,10 +41,10 @@ $> TaxApiSample
 
 With no arguments, the CLI checks the cached session token, attempts to log in
 if it is missing or expired, then opens the interactive action menu in the
-terminal. The menu currently offers `Check auth token`, `Exit`, and three
-explicitly labeled placeholder actions that are not implemented yet. Startup
-may make a live authentication request, so configure `.env` and check the
-development URLs before running it.
+terminal. The menu offers `Compare staff.xls with Axcess Tax` and `Check auth
+token`, plus `Exit` and three explicitly labeled placeholder actions that are
+not implemented yet. Startup may make a live authentication request, so
+configure `.env` and check the development URLs before running it.
 
 ## Command-Line Usage
 
@@ -54,6 +55,7 @@ TaxApiSample login
 TaxApiSample check-token
 TaxApiSample logout
 TaxApiSample list
+TaxApiSample compare-staff [staff.xls] [--authorization <token>]
 TaxApiSample <endpoint-name> [--method GET|POST|PUT|DELETE]
                               [--query key=value ...]
                               [--body '<json>' | --body @file.json]
@@ -77,6 +79,26 @@ available.
   policy after saving a token; this is not an expiry duration specified by the
   Authentication API.
 - `logout` removes the cached token.
+- `compare-staff [staff.xls]` compares each workbook row with the Staff Services
+  `GET /v1.0/Staff?id={staffId}` operation and prints a JSON report to
+  standard output. The default workbook path is `staff.xls` in the current
+  directory. It matches by `Staff ID`, ignores blank workbook cells, and reports
+  field-level differences as proposed values; it does not call the Staff update
+  operation. The report also lists workbook staff IDs not found in Axcess.
+  Workbook headings map to the Staff API fields as follows: First Name ->
+  `FirstName`, Last Name -> `LastName`, Middle Name -> `MiddleName`, Suffix ->
+  `Suffix`, Title -> `Honorific`, Business unit -> `BusinessUnitName`, Department
+  -> `FirmDepartmentName`, Home Office -> `HomeOfficeName`, Report Name ->
+  `ReportName`, Reporting Manager -> `ReportingManagerName`, Status ->
+  `StaffStatusCd`, and System Email -> `SystemEmailAddress`. Blank cells are
+  ignored. Axcess staff status `A` (including the trailing space returned as
+  `A `) is translated to `Active` for comparison and in the `AxcessValue` field
+  of the JSON report. A cached
+  `Security` token is used by default; OAuth users may pass
+  `--authorization <token>`. The Staff Service base URL is configured by
+  `CchTaxApi:StaffServiceBaseUrl`. The checked-in Staff Services OpenAPI names
+  this query parameter `STAFFID`, while the lookup request uses `id` to match
+  the service URL shape expected by this environment.
 
 ## Debugging
 
@@ -97,6 +119,7 @@ $> dotnet build ./src/TaxApiSample/TaxApiSample.csproj
 
 ```bash
 $> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample login
+$> TaxApiSample compare-staff staff.xls
 $> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample check-token
 $> ./src/TaxApiSample/bin/Debug/net10.0/TaxApiSample Returns --method GET --query "\$filter=TaxYear eq '2025'"
 # This a 2-part process to illustrate how a Batch process works
